@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+DEVICE_PATH := device/samsung/a22x
+
 # Bootloader
 BOARD_VENDOR := samsung
 TARGET_SOC := S96801AA1
@@ -148,3 +150,9 @@ TARGET_USES_MKE2FS := true
 
 # Additional flags
 TW_NO_SCREEN_BLANK := true
+
+#sepolicy for fastdotd
+BOARD_SEPOLICY_DIRS += device/samsung/a22x/sepolicy/
+BOARD_RECOVERY_SEPOLICY_DIRS += device/samsung/a22x/sepolicy/recovery
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/
+BOARD_RECOVERY_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/recovery
