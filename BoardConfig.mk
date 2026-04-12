@@ -38,15 +38,15 @@ TARGET_2ND_CPU_VARIANT := cortex-a55
 TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
 
 TARGET_USES_64_BIT_BINDER := true
+TARGET_SUPPORTS_64_BIT_APPS := true
 
-TARGET_CPU_SMP := true
-ENABLE_CPUSETS := true
-ENABLE_SCHEDBOOST := true
+# Fix build issues
+ALLOW_MISSING_DEPENDENCIES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 
 # APEX
 DEXPREOPT_GENERATE_APEX_IMAGE := true
-
-ALLOW_MISSING_DEPENDENCIES := true
 
 # File systems
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -60,7 +60,6 @@ TARGET_BOARD_PLATFORM_GPU := mali-g57
 TARGET_PREBUILT_KERNEL := device/samsung/a22x/prebuilt/Image.gz
 TARGET_PREBUILT_DTB := device/samsung/a22x/prebuilt/dtb.img
 BOARD_PREBUILT_DTBOIMAGE := device/samsung/a22x/prebuilt/dtbo.img
-#BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_INCLUDE_RECOVERY_DTBO := true
 TARGET_KERNEL_ARCH := arm64
 
@@ -84,11 +83,14 @@ BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_KERNEL_PAGESIZE)
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/a22x/bootimg.mk
 
-
-
 # Recovery
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_HAS_NO_SELECT_BUTTON := true
+
+# Lineage Recovery flags
+TARGET_NO_RECOVERY := true
+BOARD_USES_RECOVERY_AS_BOOT := true
+BOARD_SUPPRESS_SECURE_ERASE := true
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -106,7 +108,6 @@ BOARD_SAMSUNG_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product odm
 
 # System as root
 BOARD_ROOT_EXTRA_FOLDERS := cache carrier data_mirror efs keyrefuge linkerconfig metadata omr optics prism spu
-BOARD_SUPPRESS_SECURE_ERASE := true
 
 # Workaround for error copying vendor files to recovery ramdisk
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -132,31 +133,18 @@ TW_INCLUDE_CRYPTO_FBE := false
 TW_INCLUDE_FBE_METADATA_DECRYPT := false
 BOARD_USES_METADATA_PARTITION := true
 
-# TWRP specific build flags
-TW_THEME := portrait_hdpi
-RECOVERY_SDCARD_ON_DATA := true
+# Display
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
 TW_MAX_BRIGHTNESS := 306
 TW_DEFAULT_BRIGHTNESS := 200
 TW_Y_OFFSET := 50
 TW_H_OFFSET := -50
-TW_NO_REBOOT_BOOTLOADER := true
-TW_HAS_DOWNLOAD_MODE := true
-TW_INCLUDE_NTFS_3G := true
-TW_USE_NEW_MINADBD := true
-TW_INPUT_BLACKLIST := "hbtp_vm"
-TW_EXCLUDE_DEFAULT_USB_INIT := true
+
+# Recovery options
+TW_NO_LEGACY_PROPS := true
 TW_USE_TOOLBOX := true
 TARGET_USES_MKE2FS := true
-TW_NO_LEGACY_PROPS := true
-TW_NO_BIND_SYSTEM := true
-TW_NO_SCREEN_BLANK := true
-TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
-# my additions
-TWRP_INCLUDE_LOGCAT := true
 
-# PBRP specific build flags
-PB_TORCH_MAX_BRIGHTNESS := 1
-PB_DISABLE_DEFAULT_TREBLE_COMP := true
-TW_INCLUDE_REPACKTOOLS := true
+# Additional flags
+TW_NO_SCREEN_BLANK := true
