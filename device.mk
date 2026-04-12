@@ -14,38 +14,8 @@
 # limitations under the License.
 #
 
-# Dynamic partitions
+LOCAL_PATH := device/samsung/a22x
+
+PRODUCT_PACKAGES += fastbootd
+
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
-
-# API
-PRODUCT_TARGET_VNDK_VERSION := 33
-
-PRODUCT_SHIPPING_API_LEVEL := 31
-
-
-
-# Boot control HAL
-
-PRODUCT_PACKAGES += \
-    android.hardware.boot@1.1-impl-recovery \
-    android.hardware.boot@1.1-impl \
-    android.hardware.boot@1.1-service
-
-PRODUCT_PACKAGES_DEBUG += \
-    update_engine_client
-
-PRODUCT_PACKAGES += \
-    otapreopt_script \
-    update_engine \
-    update_verifier \
-    update_engine_sideload
-
-# fastbootd
-PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.0-impl-mock \
-    fastbootd
-
-# health Hal
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-service \
