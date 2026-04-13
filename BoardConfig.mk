@@ -89,9 +89,7 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 41943040
 
 
-# Workaround for error copying vendor files to recovery ramdisk
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
-TARGET_COPY_OUT_VENDOR := vendor
+
 
 # Lineage Recovery flags - MODIFIED
 TARGET_NO_RECOVERY := false
