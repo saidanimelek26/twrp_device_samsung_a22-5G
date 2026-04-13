@@ -58,23 +58,15 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_BOARD_PLATFORM := mt6833
 TARGET_BOARD_PLATFORM_GPU := mali-g57
 
-# Kernel
-TARGET_PREBUILT_KERNEL := device/samsung/a22x/prebuilt/Image.gz
-TARGET_PREBUILT_DTB := device/samsung/a22x/prebuilt/dtb.img
-BOARD_PREBUILT_DTBOIMAGE := device/samsung/a22x/prebuilt/dtbo.img
-BOARD_INCLUDE_RECOVERY_DTBO := true
-TARGET_KERNEL_ARCH := arm64
-
-
 # Kernel - prebuilt
 TARGET_FORCE_PREBUILT_KERNEL := true
 ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
+BOARD_INCLUDE_RECOVERY_DTBO := true
 BOARD_INCLUDE_DTB_IN_BOOTIMG := false
 BOARD_BOOTIMG_HEADER_VERSION := 3
-
 endif
 
 # Recovery
