@@ -2,16 +2,6 @@
 # Copyright (C) 2020 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
 #
 
 DEVICE_PATH := device/samsung/a22x
@@ -73,9 +63,9 @@ BOARD_MKBOOTIMG_ARGS += --board SRPTL28A004
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_KERNEL_PAGESIZE)
 
-# ==================== RECOVERY-ONLY CONFIG ====================
+# ==================== LineageOS RECOVERY CONFIG ====================
 
-# These flags are critical to avoid the rsync "root" missing error
+TARGET_BUILD_RECOVERY_ONLY := true     # Important for Lineage recovery
 TARGET_NO_BOOT := true
 TARGET_NO_RECOVERY := false
 BUILDING_RECOVERY_IMAGE := true
@@ -91,6 +81,10 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_SCREEN_DENSITY := 420
 
+# SELinux
+BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/common
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+BOARD_RECOVERY_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/recovery
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -112,6 +106,6 @@ BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flag 2
 
-# MediaTek / Samsung recovery helpers
+# Extra for LineageOS recovery
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
